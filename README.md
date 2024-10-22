@@ -14,7 +14,11 @@ sudo apt install nvidia-cuda-toolkit
 ````
 Install libgm
 ````
-sudo apt install -y libgmp-dev
+apt update && apt upgrade
+apt install git -y
+apt install build-essential -y
+apt install libssl-dev -y
+apt install libgmp-dev -y
 ````
 Python 
 ````
