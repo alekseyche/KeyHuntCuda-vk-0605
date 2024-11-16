@@ -80,3 +80,9 @@ NVIDIA GTX Titan X (Pascal) – Compute Capability: 61
 ````
 
 ----------------------------------------------------------------------------------------------------------------------------------
+
+Após instalar basta rodar o comando:
+
+````
+python3 novo-67.py
+````
