@@ -4,10 +4,10 @@ import time
 from datetime import datetime
 
 # Parâmetros base
-start_range = int("40000000000000000", 16)
+start_range = int("41000000000000000", 16)
 end_range = int("7ffffffffffffffff", 16)
 
-total_subranges = 100000
+total_subranges = 113211
 address = "1BY8GQbnueYofwSuFAT3USAhGjPrkxDdW9"
 log_file = f"67-Sequencial-{total_subranges}.tsv"
 output_file = "FOUNDFOUNDFOUND.txt"
@@ -83,13 +83,13 @@ def gerenciar_busca():
 
             processo = executar_keyhunt(subrange_start, subrange_end)
 
-            # Aguarda 15 segundos, então mata o processo e atualiza o status
-            time.sleep(15)
+            # Aguarda 30 segundos, então mata o processo e atualiza o status
+            time.sleep(30)
             processo.terminate()
             processo.wait()
 
-            # Aguarda 1 segundo antes de prosseguir para o próximo subrange
-            time.sleep(1)
+            # Aguarda 2 segundo antes de prosseguir para o próximo subrange
+            time.sleep(2)
 
             print(f"Subrange {subrange_start}:{subrange_end} finalizado.")
             atualizar_status(subrange_start, subrange_end, "Scanned")
