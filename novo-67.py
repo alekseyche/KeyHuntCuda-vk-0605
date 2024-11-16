@@ -1,5 +1,4 @@
 import os
-import random
 import subprocess
 import time
 from datetime import datetime
@@ -10,8 +9,8 @@ end_range = int("7ffffffffffffffff", 16)
 
 total_subranges = 100000
 address = "1BY8GQbnueYofwSuFAT3USAhGjPrkxDdW9"
-output_file = "FOUNDFOUNDFOUND-67.txt"
-log_file = "67NOVO.tsv"
+log_file = f"67-Sequencial-{total_subranges}.tsv"
+output_file = "FOUNDFOUNDFOUND.txt"
 
 # Função para calcular o tamanho de cada subrange
 def calcular_subranges():
@@ -69,8 +68,14 @@ def executar_keyhunt(subrange_start, subrange_end):
 def gerenciar_busca():
     try:
         subranges = carregar_subranges()
-        while subranges:
-            subrange = random.choice(subranges)
+        total_restantes = len(subranges)
+        total_escaneados = total_subranges - total_restantes
+
+        print(f"Total de subranges: {total_subranges}")
+        print(f"Subranges escaneados: {total_escaneados}")
+        print(f"Subranges restantes: {total_restantes}")
+
+        for subrange in subranges:
             subrange_start, subrange_end = subrange
 
             print(f"Escaneando subrange {subrange_start}:{subrange_end}")
@@ -78,16 +83,21 @@ def gerenciar_busca():
 
             processo = executar_keyhunt(subrange_start, subrange_end)
 
-            # Aguarda 1 minuto, então mata o processo e atualiza o status
-            time.sleep(60)
+            # Aguarda 15 segundos, então mata o processo e atualiza o status
+            time.sleep(15)
             processo.terminate()
             processo.wait()
+
+            # Aguarda 1 segundo antes de prosseguir para o próximo subrange
+            time.sleep(1)
 
             print(f"Subrange {subrange_start}:{subrange_end} finalizado.")
             atualizar_status(subrange_start, subrange_end, "Scanned")
 
-            # Remove o subrange da lista de pendentes
-            subranges = carregar_subranges()
+            # Atualiza os contadores
+            total_restantes -= 1
+            total_escaneados += 1
+            print(f"Progresso: {total_escaneados}/{total_subranges} subranges escaneados.")
 
         print("Todos os subranges foram escaneados.")
 
