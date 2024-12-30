@@ -8,8 +8,8 @@
 #Tutorial: Instalação e Uso do Código
 
 
-````
-Install libgm
+
+1 - Install libgm
 ````
 apt update && apt upgrade
 apt install git -y
@@ -17,22 +17,23 @@ apt install build-essential -y
 apt install libssl-dev -y
 apt install libgmp-dev -y
 
-Cuda 12.6
+````
+2 - Cuda 12.6
 ````
 wget https://developer.download.nvidia.com/compute/cuda/12.6.3/local_installers/cuda_12.6.3_560.35.05_linux.run
 sudo sh cuda_12.6.3_560.35.05_linux.run
 
 ````
-Python 
+3 - Python 
 ````
 sudo apt-get install python3.9
 ````
-Clonar o repositório
+4 - Clonar o repositório
 ````
 git clone https://github.com/vkThiago/KeyHuntCuda-vk.git
 ````
 
-Instalação com placa de video
+5 - Instalação com placa de video
 ````
 cd KeyHuntCuda-vk
 make gpu=1 CCAP=75 all
